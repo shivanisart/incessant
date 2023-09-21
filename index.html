@@ -42,7 +42,6 @@
       width: 100%; /* Set width to 100% to maintain uniform size */
       max-width: 400px; /* Set a maximum width for larger screens */
       height: auto;
-      display: none;
     }
 
     .gif-button {
@@ -53,6 +52,7 @@
       border: none;
       cursor: pointer;
       width: 150px;
+      display: none; /* Initially hide the button */
     }
     .playing {
       background-color: #19543E;
@@ -63,22 +63,20 @@
       display: none;
     }
     .back-button {
-    margin: 0 auto; /* Center all "Back" buttons horizontally */
-    display: none; /* Initially hide all "Back" buttons */
-  }
-
-}
+      margin: 0 auto; /* Center all "Back" buttons horizontally */
+      display: none; /* Initially hide all "Back" buttons */
+    }
 
   </style>
 </head>
 <body>
   <div class="title">
-    Incessant<br>Shivani Mathur,2023
+    Incessant, Shivani Mathur<br>2023
   </div>
   <div class="gif-container">
     <img id="image" src="20230818 people 2.JPG" alt="image of people">
-    <button class="gif-button" id="playButton1">Toggle</button>
-    <img id="gif1" src="20230818 people 2.GIF" alt="GIF 1">
+    <button class="gif-button" id="playButton1">Play GIF</button>
+    <img id="gif1" src="20230818 people 2.GIF" alt="GIF 1" class="hidden">
   </div>
   <div class="footer">
     Copyright Shivani Mathur. All rights reserved.
@@ -96,22 +94,27 @@
     let isGifVisible = false; // Initially, the GIF is hidden
 
     gifButton.addEventListener('click', () => {
-      if (isGifVisible) {
+      if (!isGifVisible) {
+        // If the GIF is hidden, show it and hide the image
+        gif.style.display = 'block';
+        image.style.display = 'none';
+        gifButton.innerText = 'Still'; // Change button text
+        isGifVisible = true;
+      } else {
         // If the GIF is visible, hide it and show the image
         gif.style.display = 'none';
         image.style.display = 'block';
-        gifButton.innerText = 'Show GIF'; // Change button text
+        gifButton.innerText = 'Play'; // Change button text
         isGifVisible = false;
-      } else {
-        // If the image is visible, hide it and show the GIF
-        image.style.display = 'none';
-        gif.style.display = 'block';
-        gifButton.innerText = 'Show Image'; // Change button text
-        isGifVisible = true;
       }
     });
+
+    // Initially, display the image and show the "Play GIF" button
+    image.style.display = 'block';
+    gifButton.style.display = 'block';
   </script>
 
 </body>
 </html>
+
 
