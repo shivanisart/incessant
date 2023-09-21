@@ -73,73 +73,45 @@
 </head>
 <body>
   <div class="title">
-    Incessant, Shivani Mathur<br>2023
+    Incessant<br>Shivani Mathur,2023
   </div>
   <div class="gif-container">
+    <img id="image" src="20230818 people 2.JPG" alt="image of people">
+    <button class="gif-button" id="playButton1">Toggle</button>
     <img id="gif1" src="20230818 people 2.GIF" alt="GIF 1">
-    <button class="gif-button" id="playButton1">People</button>
-   
-    <img id="image" src="20230818 people 2.JPG" alt="image of  people">
-  
   </div>
   <div class="footer">
     Copyright Shivani Mathur. All rights reserved.
   </div>
-  <a href="about_shivani.pdf" target="_blank">
-    <button class="gif-button" id="aboutButton">About Shivani (PDF)</button>
+  <a href="Incessant.pdf" target="_blank">
+    <button class="gif-button" id="aboutButton">Incessant (PDF)</button>
   </a>
 
   <script>
-    const gifButtons = document.querySelectorAll('.gif-button');
-    const gifs = document.querySelectorAll('img');
+    const gifButton = document.getElementById('playButton1');
+    const image = document.getElementById('image');
+    const gif = document.getElementById('gif1');
     const aboutButton = document.getElementById('aboutButton');
 
-    gifButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        if (!button.classList.contains('playing')) {
-          // Hide all GIFs
-          gifs.forEach((gif) => {
-            gif.style.display = 'none';
-          });
+    let isGifVisible = false; // Initially, the GIF is hidden
 
-          // Reset all buttons to default style
-          gifButtons.forEach((btn) => {
-            btn.classList.remove('playing');
-          });
-
-          // Hide all buttons except the clicked one
-          gifButtons.forEach((btn) => {
-            if (btn !== button) {
-              btn.style.display = 'none';
-            }
-          });
-
-          // Show only the clicked GIF
-          gifs[index].style.display = 'block';
-
-          // Highlight the clicked button
-          button.classList.add('playing');
-
-          // Show "About Shivani (PDF)" button
-          aboutButton.style.display = 'block';
-        } else {
-          // Clicking the selected button again returns to the menu
-          gifs[index].style.display = 'none';
-
-          // Reset the button style
-          button.classList.remove('playing');
-
-          // Show all buttons again
-          gifButtons.forEach((btn) => {
-            btn.style.display = 'block';
-          });
-
-          // Hide "About Shivani (PDF)" button when returning to the menu
-          aboutButton.style.display = 'none';
-        }
-      });
+    gifButton.addEventListener('click', () => {
+      if (isGifVisible) {
+        // If the GIF is visible, hide it and show the image
+        gif.style.display = 'none';
+        image.style.display = 'block';
+        gifButton.innerText = 'Show GIF'; // Change button text
+        isGifVisible = false;
+      } else {
+        // If the image is visible, hide it and show the GIF
+        image.style.display = 'none';
+        gif.style.display = 'block';
+        gifButton.innerText = 'Show Image'; // Change button text
+        isGifVisible = true;
+      }
     });
   </script>
 
 </body>
 </html>
+
